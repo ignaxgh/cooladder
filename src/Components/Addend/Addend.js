@@ -12,6 +12,9 @@ export function Addend(props){
     setOperator(()=>event.target.value);
   }
   
+  const handleToggle = ()=>{
+    props.toggleOperator(!props.addend.enabled, props.addend.addendId);
+  }
   return (
     <li>
       <select onChange={handleOperator} defaultValue={operator}>
@@ -21,7 +24,7 @@ export function Addend(props){
       
       <input type="text" value={props.addend.value} onChange={handleChange}/>
       <button>Delete</button>
-      <button>Disable</button>
+      <button onClick={handleToggle}>{(props.addend.enabled)? "Disable" : "Enable"}</button>
     </li>
   );
 }

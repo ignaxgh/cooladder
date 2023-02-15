@@ -59,6 +59,21 @@ function App() {
     setAddends(()=>newAddends);
   }
 
+  const toggleOperator=(newToggle,id)=>{
+    const newAddends = addends.map((addend)=>{
+      if(addend.addendId===id){
+        return {
+          addendId: addend.addendId,
+          operator: addend.operator,
+          value: addend.value,
+          enabled: newToggle,
+        };
+      }else{
+        return addend;
+      }
+    });
+    setAddends(()=>newAddends);
+  }
   return (
     <div className="App">
       <header>
@@ -67,11 +82,11 @@ function App() {
       <article className="App-article">
         <ul>
           {addends.map((current)=>(
-            <Addend key={current.addendId} addend={current} changeValue={changeValue} changeOperator={changeOperator}/>
+            <Addend key={current.addendId} addend={current} changeValue={changeValue} changeOperator={changeOperator} toggleOperator={toggleOperator}/>
           ))}
         </ul>
         <button onClick={handleAdd}>Add row</button>
-        <h2>Result: {addends.reduce((sum, currentOperator)=>{
+        <h2>Result: {addends.filter(({enabled})=>enabled).reduce((sum, currentOperator)=>{
           if(currentOperator.operator==="+"){
             return sum+Number(currentOperator.value);
           } else {
