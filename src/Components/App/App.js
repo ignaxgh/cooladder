@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import './App.css';
 import { Addend } from '../Addend/Addend';
+import { generateId } from '../../Utilities/utilities';
 
 function App() {
 
@@ -13,18 +14,15 @@ function App() {
   }]);
 
   const handleAdd = ()=>{
-    setAddends((prev)=>{
-      let newId = 0;
-      if(prev.length !== 0){
-        newId = prev.length;
-      }
-      return [...prev,{
+    let newId = generateId();
+    setAddends((prev)=>
+        [...prev,{
         addendId: newId,
         operator: "+",
         value:"0",
         enabled: true,
-      }];
-    });
+      }]
+    );
   };
 
   const changeValue=(newValue,id)=>{
@@ -41,7 +39,7 @@ function App() {
       }
     });
     setAddends(()=>newAddends);
-  }
+  };
 
   const changeOperator=(newOperator, id) =>{
     const newAddends = addends.map((addend)=>{
@@ -57,7 +55,7 @@ function App() {
       }
     });
     setAddends(()=>newAddends);
-  }
+  };
 
   const toggleOperator=(newToggle,id)=>{
     const newAddends = addends.map((addend)=>{
@@ -73,7 +71,13 @@ function App() {
       }
     });
     setAddends(()=>newAddends);
+  };
+
+  const removeOperator= (id)=>{
+    const newAddends = addends.filter(({addendId})=>addendId !==id);
+    setAddends(()=>newAddends);
   }
+
   return (
     <div className="App">
       <header>
@@ -82,7 +86,7 @@ function App() {
       <article className="App-article">
         <ul>
           {addends.map((current)=>(
-            <Addend key={current.addendId} addend={current} changeValue={changeValue} changeOperator={changeOperator} toggleOperator={toggleOperator}/>
+            <Addend key={current.addendId} addend={current} changeValue={changeValue} changeOperator={changeOperator} toggleOperator={toggleOperator} removeOperator={removeOperator}/>
           ))}
         </ul>
         <button onClick={handleAdd}>Add row</button>
