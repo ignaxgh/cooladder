@@ -43,6 +43,22 @@ function App() {
     setAddends(()=>newAddends);
   }
 
+  const changeOperator=(newOperator, id) =>{
+    const newAddends = addends.map((addend)=>{
+      if(addend.addendId===id){
+        return {
+          addendId: addend.addendId,
+          operator: newOperator,
+          value: addend.value,
+          enabled: addend.enabled,
+        };
+      }else{
+        return addend;
+      }
+    });
+    setAddends(()=>newAddends);
+  }
+
   return (
     <div className="App">
       <header>
@@ -51,11 +67,17 @@ function App() {
       <article className="App-article">
         <ul>
           {addends.map((current)=>(
-            <Addend key={current.addendId} addend={current} changeValue={changeValue}/>
+            <Addend key={current.addendId} addend={current} changeValue={changeValue} changeOperator={changeOperator}/>
           ))}
         </ul>
         <button onClick={handleAdd}>Add row</button>
-        <h2>Result: {addends.reduce((sum,{value})=>sum+Number(value),0)}</h2>
+        <h2>Result: {addends.reduce((sum, currentOperator)=>{
+          if(currentOperator.operator==="+"){
+            return sum+Number(currentOperator.value);
+          } else {
+            return sum-Number(currentOperator.value);
+          }
+        },0)}</h2>
       </article>
     </div>
   );
