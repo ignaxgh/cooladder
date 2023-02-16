@@ -1,5 +1,18 @@
 .App {
   text-align: center;
+  font-size: 16x;
+}
+
+.App header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App header h1{
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 .coolBlue {
   color: #000fff;
@@ -7,16 +20,26 @@
 
 .App-article {
   background-color: #000fff;
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  flex-shrink: 1;
   align-items: center;
-  justify-content: center;
+  justify-content:flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App h2 {
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+button,select {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 3px;
+  margin: 0.1rem;
 }
 

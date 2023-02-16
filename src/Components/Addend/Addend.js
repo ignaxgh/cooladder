@@ -1,3 +1,4 @@
+import './Addend.css';
 import {useState} from 'react';
 
 export function Addend(props){
@@ -37,7 +38,7 @@ export function Addend(props){
       
       <input type="text" value={props.addend.value} onChange={handleChange}/>
       <button onClick={handleRemove}>Delete</button>
-      <button onClick={handleToggle}>{(props.addend.enabled)? "Disable" : "Enable"}</button>
+      <button className={(props.addend.enabled)? "redButton":"greenButton"}onClick={handleToggle}>{(props.addend.enabled)? "Disable" : "Enable"}</button>
     </li>
   );
 }

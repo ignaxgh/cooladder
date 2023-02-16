@@ -81,7 +81,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1><span className="coolBlue">Cool</span>Adder, a cool and simple React adder</h1>
+        <h1><span className="coolBlue">Cool</span>Adder, a simple React adder</h1>
       </header>
       <article className="App-article">
         <ul>

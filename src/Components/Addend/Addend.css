@@ -1,0 +1,23 @@
+.Addend {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.1rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #666;
+  border-radius: 3px;
+  margin: 0.5rem;
+}
+
+.redButton {
+  background-color: #ff0000;
+  color: #fff;
+
+}
+
+.greenButton {
+  background-color: #008000;
+  color: #fff;
+}
